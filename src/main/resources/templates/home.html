@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Danh sach nhan vien</h1>
+<a th:href="@{/employees/create}">Add new Employee</a>
+<form th:action="@{/employees/showAll}" method="get">
+    <input type="text" name="keyword">
+    <input type="submit" value="search">
+</form>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Office</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="row: ${employeeList}">
+        <td th:text="${row.id}"></td>
+        <td th:text="${row.name}"></td>
+        <td th:text="${row.email}"></td>
+        <td th:text="${row.age}"></td>
+        <td th:text="${row.office.nameOffice}"></td>
+        <td style="border: solid 1px">
+            <a th:href = "@{/employees/{id}/delete(id=${row.id})}">delete</a>
+        </td>
+        <td style="border: solid 1px">
+            <a th:href = "@{/employees/{id}/update(id=${row.id})}">update</a>
+        </td>
+        <td style="border: solid 1px">
+            <a th:href = "@{/employees/{id}/view(id=${row.id})}">view</a>
+        </td>
+
+    </tr>
+</table>
+<style>
+    .phantrang a:not(:first-child){
+        margin-left: 20px;
+    }
+</style>
+<div class="phantrang">
+    <a th:href="@{/employees/showAll(page=${employeeList.getNumber()-1},keyword=${keyword})}">Truoc</a>
+    <a th:each="page :${#numbers.sequence(0,employeeList.totalPages - 1)}" th:href="@{/employees/showAll(page=${page}, keyword=${keyword})}" th:text="${page+1}"></a>
+    <a th:href="@{/employees/showAll(page=${employeeList.getNumber()+1}, keyword=${keyword})}">Sau</a>
+</div>
+</body>
+</html>

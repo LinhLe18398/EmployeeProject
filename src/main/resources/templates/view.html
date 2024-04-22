@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+</head>
+<body>
+<table style="border: solid 1px">
+  <tr style="border: solid 1px">
+    <th style="border: solid 1px">Name</th>
+    <th style="border: solid 1px">Email</th>
+    <th style="border: solid 1px">Age</th>
+    <th style="border: solid 1px">Office</th>
+  </tr>
+  <tr>
+    <td th:text="${employee.name}" style="border: solid 1px"></td>
+    <td th:text="${employee.email}" style="border: solid 1px"></td>
+    <td th:text="${employee.age}" style="border: solid 1px"></td>
+    <td th:text="${employee.office.nameOffice}" style="border: solid 1px"></td>
+
+  </tr>
+</table>
+</body>
+</html>
